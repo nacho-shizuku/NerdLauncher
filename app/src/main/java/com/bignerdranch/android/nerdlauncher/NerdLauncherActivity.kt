@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -23,7 +25,7 @@ class NerdLauncherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_nerd_launcher)
 
         recyclerView = findViewById(R.id.app_recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this, 4)
 
         setupAdapter()
     }
@@ -47,19 +49,22 @@ class NerdLauncherActivity : AppCompatActivity() {
     private class ActivityHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        private val nameTextView = itemView as TextView
+        private val nameTextView = itemView.findViewById(R.id.app_name) as TextView
+        private val icoImageView = itemView.findViewById(R.id.app_ico) as ImageView
         private lateinit var resolveInfo: ResolveInfo
 
         init {
             nameTextView.setOnClickListener(this)
+            icoImageView.setOnClickListener(this)
         }
 
         fun bindActivity(resolveInfo: ResolveInfo) {
             this.resolveInfo = resolveInfo
             val packageManager = itemView.context.packageManager
-            val appName =
-                resolveInfo.loadLabel(packageManager).toString()
+            val appName = resolveInfo.loadLabel(packageManager).toString()
+            val appIco = resolveInfo.loadIcon(packageManager)
             nameTextView.text = appName
+            icoImageView.setImageDrawable(appIco)
         }
 
         override fun onClick(view: View) {
@@ -85,13 +90,12 @@ class NerdLauncherActivity : AppCompatActivity() {
         override fun onCreateViewHolder(
             container: ViewGroup,
             viewType: Int
-        ):
-                ActivityHolder {
+        ): ActivityHolder {
             val layoutInflater =
                 LayoutInflater.from(container.context)
             val view = layoutInflater
                 .inflate(
-                    android.R.layout.simple_list_item_1,
+                    R.layout.fragment_launcher_list,
                     container, false
                 )
             return ActivityHolder(view)

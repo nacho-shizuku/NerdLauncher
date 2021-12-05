@@ -3,8 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/workspace/AndroidStudioProjects/NerdLauncher/app/src/main/res/layout/activity_nerd_launcher.xml" value="0.1793478260869565" />
-        <entry key="..\:/workspace/AndroidStudioProjects/NerdLauncher/app/src/main/res/layout/fragment_launcher_list.xml" value="0.26358695652173914" />
+        <entry key="..\:/workspace/AndroidStudioProjects/NerdLauncher/app/src/main/res/layout/activity_nerd_launcher.xml" value="0.4" />
+        <entry key="..\:/workspace/AndroidStudioProjects/NerdLauncher/app/src/main/res/layout/fragment_launcher_list.xml" value="0.536" />
       </map>
     </option>
   </component>
